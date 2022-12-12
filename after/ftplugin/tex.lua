@@ -1,4 +1,5 @@
 vim.wo.conceallevel = 2
+vim.wo.spell = true
 
 vim.keymap.set("n", "<M-b>", "<Cmd>TexlabBuild<CR>", { buffer = true, desc = "Build LaTeX" })
 vim.keymap.set("n", "<M-f>", "<Cmd>TexlabForward<CR>", { buffer = true, desc = "Build LaTeX" })
