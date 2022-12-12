@@ -42,7 +42,7 @@ autosnips = {
 
 local tex_template = [[
     \documentclass[a4paper,12pt]{article}
-    \usepackage[a4paper, margin=1in, total={20cm,27cm}]{geometry}
+    \usepackage[a4paper, margin=1in]{geometry}
     \usepackage{import}
     \usepackage{pdfpages}
     \usepackage{transparent}
