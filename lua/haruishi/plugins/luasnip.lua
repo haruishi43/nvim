@@ -42,4 +42,16 @@ vim.keymap.set("i", "<C-l>", function()
 	end
 end, { desc = "LuaSnip Next Choice" })
 
-require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/haruishi/plugins/luasnip/snips/" })
+local function reload_luasnip_config()
+	require("luasnip").cleanup()
+	for k in pairs(package.loaded) do
+		if k:match(".*luasnip.snips.*") then
+			package.loaded[k] = nil
+			require(k)
+		end
+	end
+end
+
+vim.keymap.set("n", "<space>rs", reload_luasnip_config, { desc = "Reload snippets" })
+
+require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnips/" })
