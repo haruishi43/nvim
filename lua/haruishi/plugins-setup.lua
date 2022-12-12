@@ -93,6 +93,10 @@ return packer.startup(function(use)
 		end,
 	})
 
+	-- treesitter playground
+	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use("nvim-treesitter/nvim-treesitter-context")
+
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
 	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
@@ -105,6 +109,17 @@ return packer.startup(function(use)
 
 	-- wakatime
 	use("wakatime/vim-wakatime")
+
+	-- latex
+	use("lervag/vimtex")
+	use({
+		"f3fora/nvim-texlabconfig",
+		run = "go build",
+		config = [[require('texlabconfig').setup()]],
+	})
+
+	-- neodev
+	use("folke/neodev.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
