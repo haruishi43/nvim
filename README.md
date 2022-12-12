@@ -15,6 +15,12 @@ for iterm2, enable the setting to treat option key as ESC+
 brew install mactex-no-gui
 # install pdfviewer
 brew install --cask sioyek
+# for ltex
+brew install openjdk@11
+# need to link:
+# intel:
+sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 ```
 
 MIT License

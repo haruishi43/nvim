@@ -192,3 +192,15 @@ lspconfig["texlab"].setup({
 		},
 	},
 })
+
+-- lspconfig["ltex"].setup({
+-- 	on_attach = on_attach,
+-- 	cmd = { "ltex-ls" },
+-- 	filetypes = { "text", "plaintex", "tex", "markdown" },
+-- 	settings = {
+-- 		ltex = {
+-- 			language = "en",
+-- 		},
+-- 	},
+-- 	flags = { debounce_text_changes = 300 },
+-- })

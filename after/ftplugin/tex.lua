@@ -1,5 +1,7 @@
 vim.wo.conceallevel = 2
-vim.wo.spell = true
+vim.opt.spell = true
+vim.opt.spelllang = { "en", "cjk" }
+vim.opt.spellsuggest = { "9" }
 
 vim.keymap.set("n", "<M-b>", "<Cmd>TexlabBuild<CR>", { buffer = true, desc = "Build LaTeX" })
 vim.keymap.set("n", "<M-f>", "<Cmd>TexlabForward<CR>", { buffer = true, desc = "Build LaTeX" })
