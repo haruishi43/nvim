@@ -134,3 +134,61 @@ lspconfig["sumneko_lua"].setup({
 		},
 	},
 })
+
+-- LaTeX configuration:
+-- local build_executable = 'tectonic'
+-- local build_args = {
+-- 	'-X',
+-- 	'compile',
+-- 	'%f',
+-- 	'--synctex',
+-- 	'--keep-logs',
+-- 	'--keep-intermediates',
+-- }
+local build_executable = "latexmk"
+local build_args = {
+	"-xelatex",
+	-- '-verbose',
+	"-synctex=1",
+	"-interaction=nonstopmode",
+	"%f",
+}
+local binary_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/nvim-texlabconfig/nvim-texlabconfig"
+local cache_root = vim.fn.stdpath("cache")
+local forward_executable = "/Applications/sioyek.app/Contents/MacOS/sioyek"
+local forward_args = {
+	"--inverse-search",
+	binary_path .. " -file %1 -line %2 -cache_root " .. cache_root,
+	"--reuse-instance",
+	"--forward-search-file",
+	"%f",
+	"--forward-search-line",
+	"%l",
+	"%p",
+}
+-- local executable = '/Applications/Skim.app/Contents/SharedSupport/displayline',
+-- local args = { '%l', '%p', '%f' },
+lspconfig["texlab"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		texlab = {
+			build = {
+				executable = build_executable,
+				args = build_args,
+				-- forwardSearchAfter = true,
+				onSave = true,
+			},
+			forwardSearch = {
+				executable = forward_executable,
+				args = forward_args,
+			},
+			diagnostics = {
+				ignoredPatterns = {
+					"^Overfull",
+					"^Underfull",
+				},
+			},
+		},
+	},
+})

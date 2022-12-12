@@ -30,21 +30,14 @@ end
 return packer.startup(function(use)
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
-
 	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
-
 	use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
-
 	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
-
 	use("szw/vim-maximizer") -- maximizes and restores current window
 
 	-- essential plugins
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
-
-	-- commenting with gc
-	use("numToStr/Comment.nvim")
 
 	-- file explorer
 	use("nvim-tree/nvim-tree.lua")
@@ -58,6 +51,7 @@ return packer.startup(function(use)
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
+	use("nvim-telescope/telescope-bibtex.nvim")
 
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
@@ -120,6 +114,23 @@ return packer.startup(function(use)
 
 	-- neodev
 	use("folke/neodev.nvim")
+
+	-- comment out tool
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
+
+	-- aerial
+	use("stevearc/aerial.nvim")
+
+	-- vim surround
+	use({
+		"kylechui/nvim-surround",
+		config = [[require('nvim-surround').setup()]],
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()
