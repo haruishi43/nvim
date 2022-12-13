@@ -3,7 +3,7 @@ if not setup then
 	return
 end
 local cmp_setup, copilot_cmp = pcall(require, "copilot_cmp")
-if not setup then
+if not cmp_setup then
 	return
 end
 
@@ -14,6 +14,7 @@ copilot.setup({
 	filetypes = {
 		javascript = true, -- allow specific filetype
 		c = true, -- allow specific filetype
+		python = true,
 		["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
 	},
 })

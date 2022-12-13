@@ -16,6 +16,8 @@ if not lspkind_status then
 	return
 end
 
+local has_copilot, copilot_cmp = pcall(require, "copilot_cmp.comparators")
+
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -38,10 +40,12 @@ cmp.setup({
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" }, -- lsp
-		{ name = "luasnip", option = { show_autosnippets = true } }, -- snippets
-		{ name = "buffer" }, -- text within current buffer
-		{ name = "path" }, -- file system paths
+		{ name = "copilot", group_index = 2 }, -- copilot
+		-- other soruce
+		{ name = "nvim_lsp", group_index = 2 }, -- lsp
+		{ name = "luasnip", group_index = 2, option = { show_autosnippets = true } }, -- snippets
+		{ name = "buffer", group_index = 2 }, -- text within current buffer
+		{ name = "path", group_index = 2 }, -- file system paths
 	}),
 	-- configure lspkind for vs-code like icons
 	formatting = {
@@ -49,5 +53,23 @@ cmp.setup({
 			maxwidth = 50,
 			ellipsis_char = "...",
 		}),
+	},
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			cmp.config.compare.exact,
+			has_copilot and copilot_cmp.prioritize or nil,
+			has_copilot and copilot_cmp.score or nil,
+			cmp.config.compare.offset,
+			-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
+			cmp.config.compare.recently_used,
+			cmp.config.compare.locality,
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
 	},
 })
