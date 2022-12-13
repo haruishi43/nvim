@@ -12,10 +12,7 @@ copilot.setup({
 		auto_trigger = false,
 	},
 	filetypes = {
-		javascript = true, -- allow specific filetype
-		c = true, -- allow specific filetype
-		python = true,
-		["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
+		markdown = false,
 	},
 })
 
