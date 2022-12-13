@@ -132,6 +132,25 @@ return packer.startup(function(use)
 		config = [[require('nvim-surround').setup()]],
 	})
 
+	-- copilot (experimental)
+	-- can't get it to work
+	-- use({
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	event = "VimEnter",
+	-- 	config = function()
+	-- 		vim.defer_fn(function()
+	-- 			require("copilot").setup()
+	-- 		end, 100)
+	-- 	end,
+	-- })
+	-- use({
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	after = { "copilot.lua" },
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup()
+	-- 	end,
+	-- })
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

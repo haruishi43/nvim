@@ -95,9 +95,12 @@ lspconfig["pyright"].setup({
 	on_attach = on_attach,
 })
 
+-- warning: multiple different client offset_encodings detected for buffer
+local clangd_capabilities = vim.lsp.protocol.make_client_capabilities()
+clangd_capabilities.offsetEncoding = "utf-8"
 -- configure clangd
 lspconfig["clangd"].setup({
-	capabilities = capabilities,
+	capabilities = clangd_capabilities,
 	on_attach = on_attach,
 	filetypes = { "c", "cpp", "cc" },
 })
