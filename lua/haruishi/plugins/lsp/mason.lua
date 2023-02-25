@@ -32,7 +32,7 @@ mason_lspconfig.setup({
 		"pyright", -- python
 		"clangd", -- c/c++
 		"dockerls", -- docker
-		"sumneko_lua", -- lua
+		"lua_ls", -- lua
 		"rust_analyzer", -- rust
 		-- "ltex", -- latex
 	},
