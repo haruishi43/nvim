@@ -34,7 +34,7 @@ mason_lspconfig.setup({
 		"dockerls", -- docker
 		"lua_ls", -- lua
 		"rust_analyzer", -- rust
-		-- "ltex", -- latex
+		"ltex", -- latex
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed

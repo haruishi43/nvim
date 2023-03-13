@@ -196,14 +196,16 @@ lspconfig["texlab"].setup({
 	},
 })
 
--- lspconfig["ltex"].setup({
--- 	on_attach = on_attach,
--- 	cmd = { "ltex-ls" },
--- 	filetypes = { "text", "plaintex", "tex", "markdown" },
--- 	settings = {
--- 		ltex = {
--- 			language = "en",
--- 		},
--- 	},
--- 	flags = { debounce_text_changes = 300 },
--- })
+-- brew install ltex-ls (need to sim-link!!!)
+-- https://stackoverflow.com/questions/65601196/how-to-brew-install-java
+lspconfig["ltex"].setup({
+	on_attach = on_attach,
+	cmd = { "ltex-ls" },
+	filetypes = { "text", "plaintex", "tex", "markdown" },
+	settings = {
+		ltex = {
+			language = "en",
+		},
+	},
+	flags = { debounce_text_changes = 300 },
+})
