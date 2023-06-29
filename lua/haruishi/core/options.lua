@@ -16,6 +16,8 @@ opt.wrap = false
 -- search setting
 opt.ignorecase = true
 opt.smartcase = true
+opt.hlsearch = false
+opt.incsearch = true
 
 -- cursor line
 opt.cursorline = true
@@ -24,6 +26,7 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
+opt.colorcolumn = "80"
 
 -- backspace
 opt.backspace = "indent,eol,start"

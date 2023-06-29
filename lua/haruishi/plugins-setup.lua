@@ -42,6 +42,9 @@ return packer.startup(function(use)
 	-- file explorer
 	use("nvim-tree/nvim-tree.lua")
 
+	-- theprimeagen's
+	use("theprimeagen/harpoon")
+
 	-- vs-code like icons
 	use("nvim-tree/nvim-web-devicons")
 

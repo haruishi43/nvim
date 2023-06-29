@@ -10,6 +10,10 @@ local keymap = vim.keymap -- for conciseness
 -- use jk to exit insert mode
 -- keymap.set("i", "jk", "<ESC>")
 
+-- move highlighted texts up and down (even indent inside `if`s)
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
@@ -59,3 +63,13 @@ keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if ne
 
 -- floaterm
 keymap.set("n", "<leader>fp", "<cmd>FloatermToggle<CR>") -- open a new terminal
+
+---------------------
+-- Other Unorganized
+---------------------
+
+-- dont' press Q
+keymap.set("n", "Q", "<nop>")
+
+-- doesn't work
+-- keymap.set("n", "<leader>pv", vim.cmd.Ex)
