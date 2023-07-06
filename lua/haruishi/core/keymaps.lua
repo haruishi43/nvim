@@ -73,3 +73,6 @@ keymap.set("n", "Q", "<nop>")
 
 -- doesn't work
 -- keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+-- Error log
+keymap.set("n", "<leader>el", ":e $NVIM_LOG_FILE<CR>") -- view error log for nvim
