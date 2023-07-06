@@ -25,10 +25,3 @@ require("haruishi.plugins.luasnip")
 
 -- experimental
 require("haruishi.plugins.copilot")
-
--- FIXME: libuv bug???
--- vim.api.nvim_create_autocmd({ "VimLeave" }, {
--- 	callback = function()
--- 		vim.cmd("sleep 10m")
--- 	end,
--- })

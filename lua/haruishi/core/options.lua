@@ -28,6 +28,9 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 
+-- lagggggg
+vim.opt.updatetime = 50
+
 -- backspace
 opt.backspace = "indent,eol,start"
 

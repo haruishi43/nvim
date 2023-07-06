@@ -75,4 +75,4 @@ keymap.set("n", "Q", "<nop>")
 -- keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Error log
-keymap.set("n", "<leader>el", ":e $NVIM_LOG_FILE<CR>") -- view error log for nvim
+keymap.set("n", "<leader>rel", ":e $NVIM_LOG_FILE<CR>") -- view error log for nvim
