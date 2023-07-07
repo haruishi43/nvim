@@ -28,6 +28,7 @@ treesitter.setup({
 		"html",
 		"css",
 		"markdown",
+		"markdown_inline", -- required?
 		"svelte",
 		"graphql",
 		"bash",
