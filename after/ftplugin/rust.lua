@@ -13,7 +13,9 @@ if not dapui_setup then
   return
 end
 
--- NOTE: https://miguelcrespo.co/posts/how-to-debug-like-a-pro-using-neovim/
+-- NOTE: references:
+-- - https://kurotych.com/posts/rust_neovim_debugger/
+-- - https://miguelcrespo.co/posts/how-to-debug-like-a-pro-using-neovim/
 -- TODO: create workflow for debugging
 
 dapui.setup({})
