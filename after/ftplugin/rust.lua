@@ -3,6 +3,21 @@ if not rt_setup then
 	return
 end
 
+local mason_registry = require('mason-registry')
+local codelldb = mason_registry.get_package("codelldb") -- note that this will error if you provide a non-existent package name
+local extension_path = codelldb:get_install_path() .. "/extension/"
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+adapter = {
+  type = "server",
+  port = "${port}",
+  host = "127.0.0.1",
+  executable = {
+    command = codelldb_path,
+    args = { "--port", "${port}" },
+  },
+}
+
 local opts = {
   tools = { -- rust-tools options
 
@@ -175,11 +190,13 @@ local opts = {
   },
   -- debugging stuff
   dap = {
-    adapter = {
-      type = "executable",
-      command = "lldb-vscode",
-      name = "rt_lldb",
-    },
+    adapter = adapter,
+    --adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+    --adapter = {
+    --  type = "executable",
+    --  command = "lldb-vscode",
+    --  name = "rt_lldb",
+    --},
   },
 }
 

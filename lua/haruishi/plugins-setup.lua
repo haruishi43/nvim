@@ -169,6 +169,10 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+  
+  -- rust debug
+  use('mfussenegger/nvim-dap')
+  use('jay-babu/mason-nvim-dap.nvim')  -- bridge the gap between nvim-dap and mason
 
 	if packer_bootstrap then
 		require("packer").sync()

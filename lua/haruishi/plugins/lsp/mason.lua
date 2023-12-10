@@ -10,6 +10,12 @@ if not mason_lspconfig_status then
 	return
 end
 
+-- import mason-dap plugin
+local mason_dap_status, mason_dap = pcall(require, "mason-nvim-dap")
+if not mason_dap_status then
+  return
+end
+
 -- enable mason
 mason.setup()
 
@@ -32,4 +38,11 @@ mason_lspconfig.setup({
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
+})
+
+mason_dap.setup({
+  ensure_installed = {
+    "codelldb",
+  },
+  automatic_installation = true,
 })
