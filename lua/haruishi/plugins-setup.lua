@@ -173,6 +173,7 @@ return packer.startup(function(use)
   -- rust debug
   use('mfussenegger/nvim-dap')
   use('jay-babu/mason-nvim-dap.nvim')  -- bridge the gap between nvim-dap and mason
+  use({ "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}})
 
 	if packer_bootstrap then
 		require("packer").sync()
