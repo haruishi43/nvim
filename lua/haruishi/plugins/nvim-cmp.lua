@@ -40,12 +40,15 @@ cmp.setup({
 	}),
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "copilot", group_index = 2 }, -- copilot
-		-- other soruce
-		{ name = "nvim_lsp", group_index = 2 }, -- lsp
-		{ name = "luasnip", group_index = 2, option = { show_autosnippets = true } }, -- snippets
-		{ name = "buffer", group_index = 2 }, -- text within current buffer
 		{ name = "path", group_index = 2 }, -- file system paths
+		{ name = "nvim_lsp", group_index = 3 }, -- lsp
+    { name = 'nvim_lsp_signature_help'}, -- display function signatures with current parameter emphasized
+    { name = 'nvim_lua', keyword_length = 2}, -- complete neovim's Lua runtime API such vim.lsp.*
+		{ name = "buffer", group_index = 2 }, -- text within current buffer
+		{ name = "luasnip", group_index = 2, option = { show_autosnippets = true } }, -- snippets
+    -- { name = 'vsnip', keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
+		-- other soruce
+		{ name = "copilot", group_index = 2 }, -- copilot
 	}),
 	-- configure lspkind for vs-code like icons
 	formatting = {

@@ -6,6 +6,8 @@
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
+Also, make sure to disable "Select the previous input source ^Space" in the Keyboard > Shortcuts > Input Sources section.
+
 for iterm2, enable the setting to treat option key as ESC+
 
 ## LaTeX Setup (macOS)
