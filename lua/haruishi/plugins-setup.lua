@@ -78,6 +78,7 @@ return packer.startup(function(use)
 
   -- Adds extra functionality over rust analyzer
   use("simrat39/rust-tools.nvim")
+  use("rust-lang/rust.vim")
 
 	-- managing & installing lsp servers, linters & formatters
 	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
