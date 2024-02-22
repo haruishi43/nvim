@@ -6,7 +6,7 @@ local types = require("luasnip.util.types")
 
 ls.setup({
 	update_events = "TextChanged,TextChangedI",
-	enable_autosnippets = true,
+	enable_autosnippets = false,
 	ext_opts = {
 		[types.choiceNode] = {
 			active = {
