@@ -24,3 +24,4 @@ require("haruishi.plugins.luasnip")
 
 -- experimental
 require("haruishi.plugins.copilot")
+
