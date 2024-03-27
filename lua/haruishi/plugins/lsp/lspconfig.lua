@@ -212,7 +212,7 @@ lspconfig["texlab"].setup({
 lspconfig["ltex"].setup({
 	on_attach = on_attach,
 	cmd = { "ltex-ls" },
-	filetypes = { "text", "plaintex", "tex", "markdown" },
+	filetypes = { "plaintex", "tex" },
 	settings = {
 		ltex = {
 			language = "en",
