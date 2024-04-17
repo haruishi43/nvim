@@ -10,6 +10,18 @@ Also, make sure to disable "Select the previous input source ^Space" in the Keyb
 
 for iterm2, enable the setting to treat option key as ESC+
 
+
+## Install Node
+
+I prefer to use [nvm](https://github.com/nvm-sh/nvm) since the apt `node` could be incompatible.
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# install node v18
+nvm install v18
+```
+
+
 ## LaTeX Setup (macOS)
 
 ```Bash
