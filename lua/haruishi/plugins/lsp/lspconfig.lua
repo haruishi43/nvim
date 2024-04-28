@@ -128,6 +128,13 @@ lspconfig["rust_analyzer"].setup({
   }
 })
 
+--configure odin
+lspconfig["ols"].setup({
+  capabilities = capabilities,
+	on_attach = on_attach,
+  filetypes = { "odin" },
+})
+
 -- configure lua server (with special settings)
 lspconfig["lua_ls"].setup({
 	capabilities = capabilities,

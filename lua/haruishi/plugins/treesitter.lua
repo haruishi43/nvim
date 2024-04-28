@@ -40,6 +40,7 @@ treesitter.setup({
 		"rust",
 		"c",
 		"cpp",
+    "odin",
 	},
 	-- auto install above language parsers
 	auto_install = true,

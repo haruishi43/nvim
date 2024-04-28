@@ -176,6 +176,9 @@ return packer.startup(function(use)
   use('jay-babu/mason-nvim-dap.nvim')  -- bridge the gap between nvim-dap and mason
   use({ "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}})
 
+  -- odin plugin
+  use('Tetralux/odin.vim')
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
