@@ -35,6 +35,7 @@ mason_lspconfig.setup({
 		"lua_ls", -- lua
 		"rust_analyzer", -- rust
 		"ltex", -- latex
+    "ols", -- odin
 	},
 	-- auto-install configured servers (with lspconfig)
 	automatic_installation = true, -- not the same as ensure_installed
