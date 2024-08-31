@@ -26,6 +26,8 @@ if not status then
 	return
 end
 
+local fn = vim.fn
+
 -- add list of plugins to install
 return packer.startup(function(use)
 	-- packer can manage itself
@@ -54,7 +56,7 @@ return packer.startup(function(use)
 	-- fuzzy finding w/ telescope
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
-	use("nvim-telescope/telescope-bibtex.nvim")
+	use({ "nvim-telescope/telescope-bibtex.nvim", cond = fn.has("mac") == 1 })
 
 	-- autocompletion
 	use("hrsh7th/nvim-cmp") -- completion plugin
@@ -116,12 +118,13 @@ return packer.startup(function(use)
 	-- wakatime
 	use("wakatime/vim-wakatime")
 
-	-- latex
-	use("lervag/vimtex")
+	-- latex (for macos)
+	use({ "lervag/vimtex", cond = fn.has("mac") == 1 })
 	use({
 		"f3fora/nvim-texlabconfig",
 		run = "go build",
 		config = [[require('texlabconfig').setup()]],
+    cond = fn.has("mac") == 1
 	})
 
 	-- neodev
@@ -178,6 +181,34 @@ return packer.startup(function(use)
 
   -- odin plugin
   use('Tetralux/odin.vim')
+
+  -- obsidian
+  use({
+    "epwalsh/obsidian.nvim",
+    tag = "*",  -- recommended, use latest release instead of latest commit
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    cond = fn.has("mac") == 1,
+    config = function()
+      require("obsidian").setup({
+        workspaces = {
+          {
+            name = "research",
+            path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research_vault",
+          },
+          {
+            name = "hobby",
+            path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/hobby_vault",
+          },
+        },
+        open_app_foreground = true,
+        ui = {
+          enable = false,
+        },
+      })
+    end,
+  })
 
 	if packer_bootstrap then
 		require("packer").sync()

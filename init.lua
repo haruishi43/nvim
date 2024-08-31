@@ -21,6 +21,7 @@ require("haruishi.plugins.gitsigns")
 require("haruishi.plugins.surround")
 require("haruishi.plugins.vimtex")
 require("haruishi.plugins.luasnip")
+require("haruishi.plugins.obsidian")
 
 -- experimental
 require("haruishi.plugins.copilot")
