@@ -22,13 +22,8 @@ mason.setup()
 mason_lspconfig.setup({
 	-- list of servers for mason to install
 	ensure_installed = {
-		"tsserver",
 		"html",
 		"cssls",
-		-- "tailwindcss",
-		-- "sumneko_lua",
-		-- "emmet_ls",
-		-- my lsp
 		"pyright", -- python
 		"clangd", -- c/c++
 		"dockerls", -- docker
