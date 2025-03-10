@@ -197,8 +197,8 @@ return packer.startup(function(use)
             path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research_vault",
           },
           {
-            name = "hobby",
-            path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/hobby_vault",
+            name = "life",
+            path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/life_vault",
           },
         },
         open_app_foreground = true,
