@@ -11,6 +11,22 @@ Also, make sure to disable "Select the previous input source ^Space" in the Keyb
 for iterm2, enable the setting to treat option key as ESC+
 
 
+## Dependencies
+
+```bash
+brew install neovim
+brew install luarocks
+brew install ripgrep
+brew install fzf
+
+# NodeJS
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.37.2/install.sh | zsh
+source ~/.zshrc
+loadnvm
+nvm install node
+```
+
+
 ## Install Node
 
 I prefer to use [nvm](https://github.com/nvm-sh/nvm) since the apt `node` could be incompatible.
