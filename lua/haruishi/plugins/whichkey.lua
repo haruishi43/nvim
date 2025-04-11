@@ -25,7 +25,6 @@ wk.add({
   { "<leader>fr", "<cmd>Telescope registers<cr>", desc = "Registers", mode = "n" },
   { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", mode = "n" },
   { "<leader>ft", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", mode = "n" },
-  
 
   -- Language Server
   { "<leader>l", group = "LSP" },
