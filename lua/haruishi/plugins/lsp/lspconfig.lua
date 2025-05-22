@@ -37,11 +37,19 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
-local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+local icons = {
+  [vim.diagnostic.severity.ERROR] = " ",  -- ERROR
+  [vim.diagnostic.severity.WARN]  = " ",  -- WARN
+  [vim.diagnostic.severity.HINT]  = "󰌶",  -- HINT
+  -- [vim.diagnostic.severity.HINT]  = "ﴞ ",  -- HINT
+  [vim.diagnostic.severity.INFO]  = " ",  -- INFO
+}
+vim.diagnostic.config({
+  signs = {
+    text  = icons,   -- sign text per-severity
+    numhl = {},      -- keep default line-number highlights
+  },
+})
 
 -- configure html server
 lspconfig["html"].setup({
