@@ -8,4 +8,4 @@ aerial.setup({
 })
 
 -- aerial
-vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+vim.keymap.set("n", "<leader>ao", "<cmd>AerialToggle!<CR>")
