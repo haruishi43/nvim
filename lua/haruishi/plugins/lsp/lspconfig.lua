@@ -63,6 +63,12 @@ lspconfig["cssls"].setup({
 	on_attach = on_attach,
 })
 
+-- configure typescript server
+lspconfig["ts_ls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure python
 local home = os.getenv("HOME")
 lspconfig["pyright"].setup({

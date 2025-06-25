@@ -24,6 +24,7 @@ mason_lspconfig.setup({
 	ensure_installed = {
 		"html",
 		"cssls",
+		"ts_ls", -- typescript/javascript
 		"pyright", -- python
 		"clangd", -- c/c++
 		"dockerls", -- docker
