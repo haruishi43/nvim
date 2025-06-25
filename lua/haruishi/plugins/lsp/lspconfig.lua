@@ -69,17 +69,23 @@ lspconfig["ts_ls"].setup({
 	on_attach = on_attach,
 })
 
--- configure python
-local home = os.getenv("HOME")
-lspconfig["pyright"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-  settings = {
-    python = {
-      venvPath = home .. "/.pyenv/versions"
+-- configure ruff
+require('lspconfig').ruff.setup({
+  init_options = {
+    settings = {
+      -- Ruff language server settings go here
     }
   }
 })
+
+-- configure python
+-- lspconfig["basedpyright"].setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+--   settings = {
+--     -- setting
+--   }
+-- })
 
 -- warning: multiple different client offset_encodings detected for buffer
 local clangd_capabilities = vim.lsp.protocol.make_client_capabilities()

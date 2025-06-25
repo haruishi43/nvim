@@ -25,7 +25,9 @@ mason_lspconfig.setup({
 		"html",
 		"cssls",
 		"ts_ls", -- typescript/javascript
-		"pyright", -- python
+		-- "pyright", -- python
+    -- "basedpyright", -- python
+    "ruff", -- python
 		"clangd", -- c/c++
 		"dockerls", -- docker
 		"lua_ls", -- lua
