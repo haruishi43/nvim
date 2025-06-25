@@ -73,7 +73,7 @@ lspconfig["ts_ls"].setup({
 lspconfig["ruff"].setup({
   init_options = {
     settings = {
-      -- Ruff language server settings go here
+      ['rust-analyzer'] = {},
     }
   }
 })
