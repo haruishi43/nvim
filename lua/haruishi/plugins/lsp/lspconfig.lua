@@ -79,13 +79,10 @@ lspconfig["ruff"].setup({
 })
 
 -- configure python
--- lspconfig["basedpyright"].setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
---   settings = {
---     -- setting
---   }
--- })
+lspconfig["basedpyright"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 -- warning: multiple different client offset_encodings detected for buffer
 local clangd_capabilities = vim.lsp.protocol.make_client_capabilities()

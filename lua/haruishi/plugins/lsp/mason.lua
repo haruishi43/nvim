@@ -26,7 +26,7 @@ mason_lspconfig.setup({
 		"cssls",
 		"ts_ls", -- typescript/javascript
 		-- "pyright", -- python
-    -- "basedpyright", -- python
+    "basedpyright", -- python
     "ruff", -- python
 		"clangd", -- c/c++
 		"dockerls", -- docker
