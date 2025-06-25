@@ -79,9 +79,17 @@ lspconfig["ruff"].setup({
 })
 
 -- configure python
+--
 lspconfig["basedpyright"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+  settings = {
+    analysis = {
+      typeCheckingMode = "basic", -- can be "off", "basic", or "strict"
+      autoSearchPaths = true,
+      useLibraryCodeForTypes = true,
+    }
+  }
 })
 
 -- warning: multiple different client offset_encodings detected for buffer
