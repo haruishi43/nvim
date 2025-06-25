@@ -25,14 +25,9 @@ local fn = vim.fn
 
 require('lazy').setup({
 	"nvim-lua/plenary.nvim", -- lua functions that many plugins use
+  -- { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
+  "EdenEast/nightfox.nvim",
 	-- "bluz71/vim-nightfly-guicolors", -- preferred colorscheme
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {},
-  -- },
-  -- "folke/tokyonight.nvim",
 	"nvim-lualine/lualine.nvim", -- statusline
 	"nvim-tree/nvim-web-devicons", -- vs-code like icons
 	"nvim-tree/nvim-tree.lua", -- file explorer

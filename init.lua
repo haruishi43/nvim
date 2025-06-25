@@ -4,7 +4,7 @@ require("haruishi.plugins-setup")
 -- core
 require("haruishi.core.options")
 require("haruishi.core.keymaps")
--- require("haruishi.core.colorscheme")
+require("haruishi.core.colorscheme")
 
 -- plugins
 require("haruishi.plugins.aerial")
