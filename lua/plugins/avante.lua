@@ -12,6 +12,7 @@ return {
     end,
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
+    make = "make",
     ---@module 'avante'
     ---@type avante.Config
     opts = {

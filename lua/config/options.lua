@@ -10,6 +10,9 @@ local opt = vim.opt
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- want to use the current working directory as the root
+vim.g.root_spec = { "cwd" }
+
 -- line numbers
 opt.relativenumber = true
 opt.number = true

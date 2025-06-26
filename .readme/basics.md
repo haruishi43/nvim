@@ -1,5 +1,6 @@
 # Basics of NeoVim
 
+Tabs and splits aren't the same as in other [editors](https://github.com/LazyVim/LazyVim/discussions/932).
 
 ## Tabs
 

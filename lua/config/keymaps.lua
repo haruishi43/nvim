@@ -27,6 +27,14 @@ keymap.set("n", "tx", ":tabclose<CR>") -- close current tab
 keymap.set("n", "tn", ":tabn<CR>") --  go to next tab
 keymap.set("n", "tp", ":tabp<CR>") --  go to previous tab
 
+-- file
+keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Find Keymaps" })
+keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Search String" })
+
+-- ui
+keymap.set("n", "<leader>uH", "<cmd>set hlsearch!<cr>", { desc = "Toggle Highlight Search" })
+keymap.set("n", "<leader>uN", "<cmd>nohl<cr>", { desc = "Clear Search Highlight" })
+
 -- obsidian
 keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = "Open Obsidian" })
 keymap.set("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "New Obsidian Note" })
