@@ -43,6 +43,7 @@ return {
         "cssls",
         "ts_ls",
         "basedpyright", -- python
+        "debugpy",
         "ruff", -- python
         "clangd", -- c/c++
         "dockerls", -- docker
@@ -62,3 +63,4 @@ return {
     },
   },
 }
+
