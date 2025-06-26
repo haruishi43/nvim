@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-keymap = vim.keymap
+local keymap = vim.keymap
 
 -- movements and retain middle of the screen
 keymap.set("n", "J", "mzJ`z")

@@ -11,6 +11,13 @@ return {
           settings = {
             ["rust-analyzer"] = {},
           },
+          keys = {
+            {
+              "<leader>co",
+              LazyVim.lsp.action["source.organizeImports"],
+              desc = "Organize Imports",
+            },
+          },
         },
         basedpyright = {
           settings = {
@@ -25,4 +32,3 @@ return {
     },
   },
 }
-
