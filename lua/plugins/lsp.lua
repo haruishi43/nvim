@@ -9,6 +9,7 @@ return {
       ensure_installed = {
         "shfmt",
         "stylua",
+        "debugpy",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
@@ -43,7 +44,6 @@ return {
         "cssls",
         "ts_ls",
         "basedpyright", -- python
-        "debugpy",
         "ruff", -- python
         "clangd", -- c/c++
         "dockerls", -- docker
@@ -63,4 +63,3 @@ return {
     },
   },
 }
-
