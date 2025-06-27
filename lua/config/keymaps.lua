@@ -20,6 +20,7 @@ keymap.set("n", "x", '"_x')
 
 -- dont' press Q
 keymap.set("n", "Q", "<nop>")
+keymap.set("n", "q", "<nop>")
 
 -- tabbing
 keymap.set("n", "to", ":tabnew<CR>") -- open new tab

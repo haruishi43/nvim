@@ -4,6 +4,10 @@
 
 vim.g.lazyvim_picker = "telescope"
 
+-- setting lsp log off for now because it's stable, but should
+-- be "debug" when debugging
+vim.lsp.set_log_level("off")
+
 local opt = vim.opt
 
 -- This file is automatically loaded by plugins.core
