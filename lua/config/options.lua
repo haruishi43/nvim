@@ -7,6 +7,13 @@ vim.g.lazyvim_picker = "telescope"
 -- setting lsp log off for now because it's stable, but should
 -- be "debug" when debugging
 vim.lsp.set_log_level("off")
+vim.api.nvim_create_user_command(
+  'LspLogClear',
+  function()
+    vim.fn.writefile({}, vim.lsp.get_log_path())  -- overwrite with an empty file
+  end,
+  {}
+)
 
 local opt = vim.opt
 
