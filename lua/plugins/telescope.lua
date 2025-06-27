@@ -126,11 +126,12 @@ return {
           return { "where", "/r", ".", "*" }
         end
       end
-  
+
       return {
         defaults = {
           prompt_prefix = " ",
           selection_caret = " ",
+          wrap_results = true,
           -- open files in the first window that is an actual file.
           -- use the current window if no other window is available.
           get_selection_window = function()
@@ -163,7 +164,11 @@ return {
             "%.jpeg$",
             "%.jpg$",
             "%.png$",
+            "%.pdf$",
+            "%.pcd$",
             ".DS_Store",
+            "%.lock$",
+            "%.ipynb$",
           },
           vimgrep_arguments = {
             "rg",
@@ -174,7 +179,6 @@ return {
             "--line-number",   -- Show line numbers
             "--column",        -- Show column numbers
             "--smart-case",    -- Smart case search
-      
             -- Exclude some patterns from search
             "--glob=!**/.git/*",
             "--glob=!**/.idea/*",
@@ -183,26 +187,13 @@ return {
             "--glob=!**/dist/*",
             "--glob=!**/yarn.lock",
             "--glob=!**/package-lock.json",
+            "--glob=!**/node_modules/*",
           },
         },
         pickers = {
           find_files = {
             find_command = find_command,
             hidden = true,
-            -- needed to exclude some files & dirs from general search
-            -- when not included or specified in .gitignore
-            find_command = {
-              "rg",
-              "--files",
-              "--hidden",
-              "--glob=!**/.git/*",
-              "--glob=!**/.idea/*",
-              "--glob=!**/.vscode/*",
-              "--glob=!**/build/*",
-              "--glob=!**/dist/*",
-              "--glob=!**/yarn.lock",
-              "--glob=!**/package-lock.json",
-            },
           },
         },
         -- extension
