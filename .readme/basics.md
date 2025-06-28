@@ -1,8 +1,12 @@
 # Basics of NeoVim
 
+## Insert Mode:
+
+- `<c-t>`: shift right ("tab")
+- `<c-d>`: shift left ("de-tab")
+
 ## Normal Mode:
 - `%` can jump between matching brackets. Can be combined with other actions like `d` or `c` to delete or change the content inside the brackets.
-
 
 ## Visual Mode:
 - `o` can switch the location of the cursor in visual mode.
