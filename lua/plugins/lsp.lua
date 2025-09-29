@@ -37,7 +37,7 @@ return {
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
         "html",
@@ -67,5 +67,5 @@ return {
     opts = {
       inlay_hints = { enabled = false },
     },
-  }
+  },
 }
