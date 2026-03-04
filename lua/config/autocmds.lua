@@ -6,3 +6,20 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- Auto-reload files changed on disk when focus is gained or when entering an unmodified buffer
+local aug = vim.api.nvim_create_augroup("ai_agent_reload", { clear = true })
+
+vim.api.nvim_create_autocmd("FocusGained", {
+  desc = "Reload files from disk when we focus vim",
+  pattern = "*",
+  command = "if getcmdwintype() == '' | checktime | endif",
+  group = aug,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI" }, {
+  desc = "Every time we enter an unmodified buffer or idle, check if it changed on disk",
+  pattern = "*",
+  command = "if &buftype == '' && !&modified && expand('%') != '' | exec 'checktime ' . expand('<abuf>') | endif",
+  group = aug,
+})

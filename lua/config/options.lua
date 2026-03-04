@@ -7,13 +7,9 @@ vim.g.lazyvim_picker = "telescope"
 -- setting lsp log off for now because it's stable, but should
 -- be "debug" when debugging
 vim.lsp.set_log_level("off")
-vim.api.nvim_create_user_command(
-  'LspLogClear',
-  function()
-    vim.fn.writefile({}, vim.lsp.get_log_path())  -- overwrite with an empty file
-  end,
-  {}
-)
+vim.api.nvim_create_user_command("LspLogClear", function()
+  vim.fn.writefile({}, vim.lsp.get_log_path()) -- overwrite with an empty file
+end, {})
 
 local opt = vim.opt
 
@@ -53,9 +49,12 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 
+-- auto-load files changed outside of nvim
+opt.autoread = true
+
 -- lagggggg
 -- vim.opt.updatetime = 50
-opt.updatetime = 200  -- lazy default
+opt.updatetime = 200 -- lazy default
 
 -- backspace
 opt.backspace = "indent,eol,start"
