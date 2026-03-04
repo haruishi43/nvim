@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("FocusGained", {
   group = aug,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold" }, {
   desc = "Every time we enter an unmodified buffer or idle, check if it changed on disk",
   pattern = "*",
   command = "if &buftype == '' && !&modified && expand('%') != '' | exec 'checktime ' . expand('<abuf>') | endif",
