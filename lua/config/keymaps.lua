@@ -23,10 +23,10 @@ keymap.set("n", "Q", "<nop>")
 keymap.set("n", "q", "<nop>")
 
 -- tabbing
-keymap.set("n", "to", ":tabnew<CR>") -- open new tab
-keymap.set("n", "tx", ":tabclose<CR>") -- close current tab
-keymap.set("n", "tn", ":tabn<CR>") --  go to next tab
-keymap.set("n", "tp", ":tabp<CR>") --  go to previous tab
+keymap.set("n", "<leader>to", ":tabnew<CR>", { desc = "New Tab" })
+keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close Tab" })
+keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "Next Tab" })
+keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "Previous Tab" })
 
 -- file
 keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Find Keymaps" })

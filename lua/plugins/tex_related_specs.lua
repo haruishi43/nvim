@@ -23,7 +23,7 @@ return {
   {
     "f3fora/nvim-texlabconfig",
     build = "go build",
-    config = [[require('texlabconfig').setup()]],
+    config = function() require('texlabconfig').setup() end,
   },
   { "nvim-telescope/telescope-bibtex.nvim" },
 }

@@ -9,7 +9,6 @@ vim.opt.listchars:append({
 })
 
 return {
-  { import = "lazyvim.plugins.editor" },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {

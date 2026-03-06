@@ -18,8 +18,6 @@ local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.expand_conditions")
 local events = require("luasnip.util.events")
 
-local utils = require("snips.latex")
-
 -- FUNCTIONS START --------------------------------------------------------
 
 -- 'recursive' dynamic snippet. Expands to some text followed by itself.
@@ -38,26 +36,6 @@ end
 -- FUNCTIONS END ---------------------------------------------------------------
 
 local snips = {
-	-- Use a dynamic_node to interpolate the output of a
-	-- function (see utils.date_input above) into the initial
-	-- value of an insert_node.
-	s("novel", {
-		t("It was a dark and stormy night on "),
-		d(1, utils.date_input, {}, { user_args = { "%A, %B %d of %Y" } }),
-		t(" and the clocks were striking thirteen."),
-	}),
-
-	utils.pair("(", ")", neg, char_count_same),
-	utils.pair("{", "}", neg, char_count_same),
-	utils.pair("[", "]", neg, char_count_same),
-	utils.pair("<", ">", neg, char_count_same),
-	utils.pair("'", "'", neg, even_count),
-	utils.pair('"', '"', neg, even_count),
-	utils.pair("`", "`", neg, even_count),
-
-	-- Use a function to execute any shell command and print its text.
-	s("bash", f(utils.bash, {}, { user_args = { "ls" } })),
-
 	-- current date
 	s({ trig = "ymd", name = "Current date", dscr = "Insert the current date" }, {
 		p(os.date, "%Y-%m-%d"),
