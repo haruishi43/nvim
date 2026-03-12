@@ -6,6 +6,9 @@ return {
     build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
     opts = {
+      pip = {
+        upgrade_pip = true,
+      },
       ensure_installed = {
         "shfmt",
         "stylua",
