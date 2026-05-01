@@ -1,30 +1,27 @@
 local fn = vim.fn
 if fn.has("mac") ~= 1 then
-    return {}
+  return {}
 end
 
 return {
-    "epwalsh/obsidian.nvim",
-    version = "*",  -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
+  "epwalsh/obsidian.nvim",
+  version = "*", -- recommended, use latest release instead of latest commit
+  lazy = true,
+  ft = "markdown",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  opts = {
+    workspaces = {
+      {
+        name = "research",
+        path = "/Users/haruyaishikawa/writing/Obsidian/research_vault",
+      },
     },
-    opts = {
-        workspaces = {
-            {
-                name = "research",
-                path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/research_vault",
-            },
-            {
-                name = "life",
-                path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/life_vault",
-            },
-        },
-        open_app_foreground = true,
-        ui = {
-            enable = false,
-        },
+    open_app_foreground = true,
+    ui = {
+      enable = false,
     },
+  },
 }
+
