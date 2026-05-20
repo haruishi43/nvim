@@ -1,21 +1,6 @@
 ## Workspace Guidelines
 
-### Project Structure
-- `src/` - Reusable Python modules (config, data, train, utils)
-- `notebooks/` - Jupyter notebooks numbered sequentially (00_, 01_, ...)
-- `configs/` - YAML experiment configs
-- `data/raw/` - Original competition data (gitignored)
-- `data/processed/` - Feature-engineered data (gitignored)
-- `models/` - Saved model artifacts (gitignored)
-- `submissions/` - Generated CSVs (gitignored)
-
-### Conventions
-- Use `uv` for dependency management. Run scripts with `uv run`.
-- Import shared code from `src.*` (e.g., `from src.config import load_config`)
-- Use `configs/*.yaml` for experiment parameters, not hardcoded values
-- Keep notebooks for exploration; move reusable code to `src/`
-- All paths use `src/config.py` constants (ROOT_DIR, DATA_DIR, etc.)
-- Python 3.12, formatted with ruff (config in pyproject.toml)
+WIP
 
 ## Behavioral Guidelines for Coding Tasks
 
