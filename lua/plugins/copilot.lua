@@ -1,5 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
+  enabled = vim.g.ai_copilot,
   cmd = "Copilot",
   build = ":Copilot auth",
   event = "BufReadPost",
@@ -21,4 +22,3 @@ return {
     },
   },
 }
-

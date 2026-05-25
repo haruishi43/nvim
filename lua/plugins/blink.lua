@@ -18,7 +18,7 @@ return {
       opts = {},
       version = not vim.g.lazyvim_blink_main and "*",
     },
-    { "giuxtaposition/blink-cmp-copilot" },
+    { "giuxtaposition/blink-cmp-copilot", enabled = vim.g.ai_copilot },
   },
   event = "InsertEnter",
 
@@ -67,7 +67,8 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
-      default = { "copilot", "lsp", "path", "snippets", "buffer" },
+      default = vim.g.ai_copilot and { "copilot", "lsp", "path", "snippets", "buffer" }
+        or { "lsp", "path", "snippets", "buffer" },
       providers = {
         copilot = {
           name = "copilot",
@@ -86,7 +87,7 @@ return {
     keymap = {
       preset = "enter",
       ["<C-y>"] = { "select_and_accept" },
-      ["<Tab>"] = { "select_next",  "snippet_forward", "fallback"},
+      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
     },
   },
@@ -156,3 +157,4 @@ return {
     require("blink.cmp").setup(opts)
   end,
 }
+

@@ -4,11 +4,20 @@
 
 vim.g.lazyvim_picker = "telescope"
 
+-- Enable Copilot only when it has been authenticated (`:Copilot auth`).
+-- copilot.lua reads its OAuth token from this dir; when it's absent (e.g. a
+-- machine where Copilot isn't set up yet) we skip the plugin entirely to avoid
+-- "not authenticated" warnings on startup. It turns on automatically once the
+-- file appears, no config changes needed.
+local copilot_dir = (vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")) .. "/github-copilot"
+vim.g.ai_copilot = vim.uv.fs_stat(copilot_dir .. "/apps.json") ~= nil
+  or vim.uv.fs_stat(copilot_dir .. "/hosts.json") ~= nil
+
 -- setting lsp log off for now because it's stable, but should
 -- be "debug" when debugging
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
 vim.api.nvim_create_user_command("LspLogClear", function()
-  vim.fn.writefile({}, vim.lsp.get_log_path()) -- overwrite with an empty file
+  vim.fn.writefile({}, vim.lsp.log.get_filename()) -- overwrite with an empty file
 end, {})
 
 local opt = vim.opt
