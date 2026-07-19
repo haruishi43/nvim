@@ -1,5 +1,7 @@
 local fn = vim.fn
-if fn.has("mac") ~= 1 then
+local vault_path = fn.expand("~/writing/Obsidian/research_vault")
+
+if fn.has("mac") ~= 1 or fn.isdirectory(vault_path) ~= 1 then
   return {}
 end
 
@@ -15,7 +17,7 @@ return {
     workspaces = {
       {
         name = "research",
-        path = "/Users/haruyaishikawa/writing/Obsidian/research_vault",
+        path = vault_path,
       },
     },
     open_app_foreground = true,
@@ -24,4 +26,3 @@ return {
     },
   },
 }
-
