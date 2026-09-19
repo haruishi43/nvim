@@ -17,6 +17,7 @@ brew install neovim
 brew install luarocks
 brew install ripgrep
 brew install fzf
+brew install lazygit
 
 # NodeJS
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.37.2/install.sh | zsh

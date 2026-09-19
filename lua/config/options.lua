@@ -13,6 +13,12 @@ local copilot_dir = (vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")) .. "
 vim.g.ai_copilot = vim.uv.fs_stat(copilot_dir .. "/apps.json") ~= nil
   or vim.uv.fs_stat(copilot_dir .. "/hosts.json") ~= nil
 
+-- none of the remote plugin providers are used here
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- setting lsp log off for now because it's stable, but should
 -- be "debug" when debugging
 vim.lsp.log.set_level("off")
