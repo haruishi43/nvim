@@ -87,8 +87,11 @@ return {
     keymap = {
       preset = "enter",
       ["<C-y>"] = { "select_and_accept" },
-      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      -- <C-j>/<C-k> move through the items, <Tab> takes the previewed one
+      ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-k>"] = { "select_prev", "fallback" },
     },
   },
   ---@param opts blink.cmp.Config | { sources: { compat: string[] } }
@@ -155,6 +158,40 @@ return {
     end
 
     require("blink.cmp").setup(opts)
+
+    -- WORKAROUND: blink.cmp's ghost text passes raw strings to vim.fn.strchars(),
+    -- which throws E976 when the string holds a NUL byte (Lua string -> Vim Blob).
+    -- Guard the redraw and report the culprit once, so it can be filed upstream.
+    local ghost_text = require("blink.cmp.completion.windows.ghost_text")
+    local draw_preview = ghost_text.draw_preview
+    local reported = {}
+    ghost_text.draw_preview = function(...)
+      local ok, err = pcall(draw_preview, ...)
+      if ok then
+        return
+      end
+
+      local item = ghost_text.selected_item or {}
+      local line = ghost_text.context and ghost_text.context.get_line() or ""
+      local new_text = (item.textEdit and item.textEdit.newText) or item.insertText or item.label or ""
+      local key = table.concat({
+        item.source_id or "?",
+        tostring(line:find("\0", 1, true) ~= nil),
+        tostring(new_text:find("\0", 1, true) ~= nil),
+      }, "/")
+      if reported[key] then
+        return
+      end
+      reported[key] = true
+
+      local msg = ("blink ghost_text failed\nerror: %s\nsource: %s\nNUL in line: %s\nNUL in newText: %s\nlabel: %s"):format(
+        err,
+        item.source_id or "?",
+        line:find("\0", 1, true) ~= nil,
+        new_text:find("\0", 1, true) ~= nil,
+        (item.label or ""):sub(1, 60)
+      )
+      vim.notify((msg:gsub("%z", "^@")), vim.log.levels.WARN)
+    end
   end,
 }
-
