@@ -150,6 +150,8 @@ return {
               ["<a-t>"] = open_with_trouble,
               ["<a-i>"] = find_files_no_ignore,
               ["<a-h>"] = find_files_with_hidden,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
               ["<C-Down>"] = actions.cycle_history_next,
               ["<C-Up>"] = actions.cycle_history_prev,
               ["<C-f>"] = actions.preview_scrolling_down,
