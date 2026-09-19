@@ -18,7 +18,6 @@ return {
       opts = {},
       version = not vim.g.lazyvim_blink_main and "*",
     },
-    { "giuxtaposition/blink-cmp-copilot", enabled = vim.g.ai_copilot },
   },
   event = "InsertEnter",
 
@@ -55,8 +54,9 @@ return {
         auto_show = true,
         auto_show_delay_ms = 200,
       },
+      -- the ghost text comes from vim.lsp.inline_completion instead
       ghost_text = {
-        enabled = vim.g.ai_cmp,
+        enabled = false,
       },
     },
 
@@ -67,17 +67,6 @@ return {
       -- adding any nvim-cmp sources here will enable them
       -- with blink.compat
       compat = {},
-      default = vim.g.ai_copilot and { "copilot", "lsp", "path", "snippets", "buffer" }
-        or { "lsp", "path", "snippets", "buffer" },
-      providers = {
-        copilot = {
-          name = "copilot",
-          module = "blink-cmp-copilot",
-          kind = "Copilot",
-          score_offset = 100,
-          async = true,
-        },
-      },
     },
 
     cmdline = {
@@ -87,8 +76,16 @@ return {
     keymap = {
       preset = "enter",
       ["<C-y>"] = { "select_and_accept" },
-      -- <C-j>/<C-k> move through the items, <Tab> takes the previewed one
-      ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
+      -- <Tab> takes Copilot's inline suggestion when one is showing,
+      -- otherwise the selected completion item
+      ["<Tab>"] = {
+        function()
+          return vim.lsp.inline_completion.get()
+        end,
+        "select_and_accept",
+        "snippet_forward",
+        "fallback",
+      },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
       ["<C-j>"] = { "select_next", "fallback" },
       ["<C-k>"] = { "select_prev", "fallback" },
@@ -128,70 +125,6 @@ return {
     -- Unset custom prop to pass blink.cmp validation
     opts.sources.compat = nil
 
-    -- check if we need to override symbol kinds
-    for _, provider in pairs(opts.sources.providers or {}) do
-      ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
-      if provider.kind then
-        local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-        local kind_idx = #CompletionItemKind + 1
-
-        CompletionItemKind[kind_idx] = provider.kind
-        ---@diagnostic disable-next-line: no-unknown
-        CompletionItemKind[provider.kind] = kind_idx
-
-        ---@type fun(ctx: blink.cmp.Context, items: blink.cmp.CompletionItem[]): blink.cmp.CompletionItem[]
-        local transform_items = provider.transform_items
-        ---@param ctx blink.cmp.Context
-        ---@param items blink.cmp.CompletionItem[]
-        provider.transform_items = function(ctx, items)
-          items = transform_items and transform_items(ctx, items) or items
-          for _, item in ipairs(items) do
-            item.kind = kind_idx or item.kind
-            item.kind_icon = LazyVim.config.icons.kinds[item.kind_name] or item.kind_icon or nil
-          end
-          return items
-        end
-
-        -- Unset custom prop to pass blink.cmp validation
-        provider.kind = nil
-      end
-    end
-
     require("blink.cmp").setup(opts)
-
-    -- WORKAROUND: blink.cmp's ghost text passes raw strings to vim.fn.strchars(),
-    -- which throws E976 when the string holds a NUL byte (Lua string -> Vim Blob).
-    -- Guard the redraw and report the culprit once, so it can be filed upstream.
-    local ghost_text = require("blink.cmp.completion.windows.ghost_text")
-    local draw_preview = ghost_text.draw_preview
-    local reported = {}
-    ghost_text.draw_preview = function(...)
-      local ok, err = pcall(draw_preview, ...)
-      if ok then
-        return
-      end
-
-      local item = ghost_text.selected_item or {}
-      local line = ghost_text.context and ghost_text.context.get_line() or ""
-      local new_text = (item.textEdit and item.textEdit.newText) or item.insertText or item.label or ""
-      local key = table.concat({
-        item.source_id or "?",
-        tostring(line:find("\0", 1, true) ~= nil),
-        tostring(new_text:find("\0", 1, true) ~= nil),
-      }, "/")
-      if reported[key] then
-        return
-      end
-      reported[key] = true
-
-      local msg = ("blink ghost_text failed\nerror: %s\nsource: %s\nNUL in line: %s\nNUL in newText: %s\nlabel: %s"):format(
-        err,
-        item.source_id or "?",
-        line:find("\0", 1, true) ~= nil,
-        new_text:find("\0", 1, true) ~= nil,
-        (item.label or ""):sub(1, 60)
-      )
-      vim.notify((msg:gsub("%z", "^@")), vim.log.levels.WARN)
-    end
   end,
 }

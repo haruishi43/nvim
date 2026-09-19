@@ -1,42 +1,57 @@
 # GitHub Copilot
 
-Copilot is opt-in by credentials: `lua/config/options.lua` sets `vim.g.ai_copilot`
-only when `~/.config/github-copilot/apps.json` or `hosts.json` exists. While the
-flag is off, both `copilot.lua` and the `blink-cmp-copilot` source are disabled,
-so a machine without Copilot pulls neither plugin and stays quiet on startup.
+Copilot runs as a plain LSP server. Neovim 0.12 handles the completion half
+itself, so there is no completion plugin in the loop:
 
-No Node needed: copilot.lua v3 defaults to the bundled `binary` server
-(`copilot-language-server`). Only `server = { type = "nodejs" }` needs Node, 22+.
+- **server**: `copilot-language-server`, installed by mason
+  (`lua/plugins/lsp.lua`), configured by the `lsp/copilot.lua` that ships with
+  nvim-lspconfig, enabled via `opts.servers.copilot`.
+- **ghost text**: `vim.lsp.inline_completion`, enabled on `LspAttach` for any
+  client advertising `textDocument/inlineCompletion`.
+- **NES** (next edit suggestions, the edits elsewhere in the buffer):
+  [copilot-lsp](https://github.com/copilotlsp-nvim/copilot-lsp), which supplies
+  the LSP handlers, the `nextEditSuggestions` setting and the preview UI.
 
-## First-time setup
+All of it lives in `lua/plugins/copilot.lua`.
 
-`copilot.lua` is `enabled = vim.g.ai_copilot`, so on a fresh machine lazy.nvim
-never installs it and `:Copilot` doesn't exist yet. Force the flag on for one
-session to authenticate:
+## Setup
 
-1. In `lua/config/options.lua`, temporarily replace the `fs_stat` check with
-   `vim.g.ai_copilot = true`.
-2. `:Lazy sync` to install `copilot.lua`, then `:Copilot auth` and follow the
-   device-code flow in the browser.
-3. Verify with `:Copilot status` and `:checkhealth copilot` (prints the
-   credential path it found).
-4. Revert `lua/config/options.lua`.
+Nothing is gated on credentials — the server is always configured, so the
+commands are always there:
 
-Note: v3 writes credentials to `~/.config/github-copilot/auth.db` —
-`apps.json` / `hosts.json` are from older versions. If step 4 leaves Copilot
-disabled, the check in `lua/config/options.lua` needs `auth.db` added.
+1. `:Lazy sync` and let mason install `copilot-language-server`.
+2. Open any file, then `:LspCopilotSignIn` and follow the device-code flow.
+3. `:checkhealth vim.lsp` should list `copilot` under active clients, and
+   `inline_completion` under active features.
+
+Sign out with `:LspCopilotSignOut`. Credentials live in
+`~/.config/github-copilot/`, shared with any other editor using the same
+server.
 
 ## Keymaps
 
-With `vim.g.ai_cmp` on (LazyVim default), suggestions come through the
-blink.cmp menu as a `copilot` source instead of inline ghost text:
+Insert mode:
 
-- `<C-j>` / `<C-k>`: cycle items, ghost text previews the selected one
-- `<Tab>`: accept the previewed item
-- `<CR>`, `<C-y>`: also accept
+- `<Tab>`: accept the Copilot suggestion. Falls through to the blink.cmp menu
+  item, then `snippet_forward`, then a literal tab
+- `<M-]>` / `<M-[>`: cycle to the next/previous Copilot suggestion. Needs
+  `macos-option-as-alt` in the Ghostty config; it is set to `right`, so use the
+  right Option key
+- `<C-j>` / `<C-k>`: move through the blink.cmp menu (nothing to do with
+  Copilot)
 
-Set `vim.g.ai_cmp = false` for copilot.lua's own inline suggestions, where
-`<M-]>` / `<M-[>` cycle them (see `lua/plugins/copilot.lua`).
+Normal mode, while a NES suggestion is pending:
 
-Turn it off with `:Copilot disable` for the session, or `:Copilot auth signout`
-for good.
+- `<Tab>`: jump to the suggested edit, then apply it (plain `<Tab>` otherwise,
+  so the jumplist still works)
+- `<Esc>`: dismiss it
+
+NES also clears itself after a few cursor moves (`move_count_threshold`,
+default 3). Request debounce is `vim.g.copilot_nes_debounce`, set to 500ms.
+
+## Notes
+
+- nvim-lspconfig's config sets `telemetry.telemetryLevel = "all"`; override it
+  in `opts.servers.copilot.settings` if you'd rather it were quieter.
+- blink.cmp's own ghost text is turned off on purpose — two sets of ghost text
+  fight over the same screen space.

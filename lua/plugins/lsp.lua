@@ -13,6 +13,7 @@ return {
         "shfmt",
         "stylua",
         "debugpy",
+        "copilot-language-server",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
